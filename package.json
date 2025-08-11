@@ -7,7 +7,9 @@
     "start": "npx serve .",
     "build": "echo 'No build step required for static app'",
     "deploy": "powershell -ExecutionPolicy Bypass -File deploy.ps1",
-    "serve": "npx serve ."
+    "serve": "npx serve .",
+    "backend": "node secure-backend-example.js",
+    "install-backend": "npm install express express-rate-limit helmet cors dotenv"
   },
   "keywords": [
     "azure",
@@ -20,5 +22,12 @@
   "license": "MIT",
   "devDependencies": {
     "serve": "^14.0.0"
+  },
+  "optionalDependencies": {
+    "express": "^4.18.0",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^6.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0"
   }
 }

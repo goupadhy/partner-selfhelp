@@ -48,7 +48,7 @@ node secure-backend-example.js
 ### **2. Environment Variables**
 Create `.env` file:
 ```
-OPENAI_API_KEY=1tH9l37IEaJnPU4I8deKEQZXoY4Zc0EtdzPQHOyYq4kxmuJSStZnJQQJ99BGACYeBjFXJ3w3AAABACOGbu3P
+OPENAI_API_KEY=your_openai_api_key_here
 PORT=3000
 NODE_ENV=production
 ```
@@ -87,16 +87,17 @@ const OPENAI_CONFIG = {
 
 ## ⚠️ **CURRENT STATUS**
 
-**Development Mode**: The chat currently falls back to direct API calls for testing purposes.
+**SECURITY FIXED**: All hardcoded API keys have been removed from source code.
 
-**Production Ready**: Once you implement the backend, remove the `generateAIResponseDirect` function.
+**Production Ready**: The application now requires a secure backend setup to function.
 
 ## 🚀 **Next Steps**
 
-1. **Deploy the secure backend** using the provided example
-2. **Update your API endpoint** to point to your backend
-3. **Remove the direct API fallback** from production
-4. **Test the secure implementation**
-5. **Monitor for any security issues**
+1. **Copy the environment template**: `cp .env.example .env`
+2. **Add your actual API key** to the .env file  
+3. **Deploy the secure backend** using the provided example
+4. **Update your API endpoint** to point to your backend
+5. **Test the secure implementation**
+6. **Monitor for any security issues**
 
-Your application is now much more secure, but the backend implementation is crucial for full security compliance!
+✅ **SECURITY FIXED**: All API keys have been removed from source code and the insecure direct API fallback has been disabled.
