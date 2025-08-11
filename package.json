@@ -1,0 +1,24 @@
+{
+  "name": "partner-resources-for-self-help",
+  "version": "1.0.0",
+  "description": "Azure Marketplace Partner Resources - Static Web Application for self-help resources",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'No build step required for static app'",
+    "deploy": "powershell -ExecutionPolicy Bypass -File deploy.ps1",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "azure",
+    "marketplace",
+    "partner",
+    "resources",
+    "static-web-app"
+  ],
+  "author": "Microsoft Partner",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
