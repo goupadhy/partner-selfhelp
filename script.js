@@ -563,14 +563,8 @@ async function processMessage(message) {
     showTypingIndicator();
     
     try {
-        // Try secure backend first, fallback to direct API for development
-        let response;
-        try {
-            response = await generateAIResponse(message);
-        } catch (backendError) {
-            console.warn('Backend unavailable, falling back to direct API:', backendError.message);
-            response = await generateAIResponseDirect(message);
-        }
+        // Use secure backend only - no fallback to direct API
+        const response = await generateAIResponse(message);
         
         hideTypingIndicator();
         sendBotMessage(response);
@@ -633,65 +627,11 @@ function generateSessionId() {
     return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
 }
 
-// TEMPORARY: Fallback to direct API (INSECURE - for development only)
+// REMOVED FOR SECURITY: Direct API calls are insecure
+// This function has been removed to prevent API key exposure
+// All API calls should go through your secure backend
 async function generateAIResponseDirect(userMessage) {
-    console.warn('🚨 SECURITY WARNING: Using direct API call. This should only be used for development!');
-    
-    // This is the insecure version - should be removed in production
-    const deploymentNames = ['gpt-4o', 'gpt-4', 'gpt-35-turbo'];
-    const apiKey = '1tH9l37IEaJnPU4I8deKEQZXoY4Zc0EtdzPQHOyYq4kxmuJSStZnJQQJ99BGACYeBjFXJ3w3AAABACOGbu3P';
-    const endpoint = 'https://openai-partnerselfhelp.openai.azure.com/';
-    const apiVersion = '2024-12-01-preview';
-    
-    for (const deploymentName of deploymentNames) {
-        try {
-            const apiUrl = `${endpoint}openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
-            
-            const requestBody = {
-                messages: [
-                    {
-                        role: "system",
-                        content: SYSTEM_PROMPT
-                    },
-                    {
-                        role: "user",
-                        content: userMessage
-                    }
-                ],
-                max_tokens: 500,
-                temperature: 0.7
-            };
-            
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'api-key': apiKey
-                },
-                body: JSON.stringify(requestBody)
-            });
-            
-            if (!response.ok) {
-                if (response.status === 404) {
-                    continue; // Try next deployment
-                }
-                throw new Error(`HTTP ${response.status}`);
-            }
-            
-            const data = await response.json();
-            
-            if (data.choices && data.choices.length > 0) {
-                return data.choices[0].message.content.trim();
-            }
-        } catch (error) {
-            console.error(`Deployment ${deploymentName} failed:`, error.message);
-            if (deploymentName === deploymentNames[deploymentNames.length - 1]) {
-                throw error;
-            }
-        }
-    }
-    
-    throw new Error('All deployments failed');
+    throw new Error('Direct API calls are disabled for security. Please set up the secure backend.');
 }
 
 // Generate bot response based on message (fallback function)

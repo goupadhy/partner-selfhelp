@@ -28,6 +28,48 @@ This application is configured for deployment to Azure Static Web Apps with the 
 - 🚀 **Getting Started Resources** - Marketplace fundamentals and Partner Center setup
 - 💻 **Technical Resources** - SaaS development and VM/Container offers
 - 🤝 **Business Support** - Sales, marketing, and partner support tools
+- 💬 **Secure AI Chat** - Partner support chatbot with proper security implementation
+
+## 🔐 Security Setup (IMPORTANT)
+
+### Prerequisites
+This application includes a chat feature that requires a secure backend to protect API keys.
+
+### Quick Setup
+1. **Copy environment template**:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Add your OpenAI API key to .env**:
+   ```
+   OPENAI_API_KEY=your_actual_api_key_here
+   ```
+
+3. **Install backend dependencies**:
+   ```bash
+   npm run install-backend
+   ```
+
+4. **Run the secure backend**:
+   ```bash
+   npm run backend
+   ```
+
+5. **Serve the frontend** (in another terminal):
+   ```bash
+   npm start
+   ```
+
+### Security Features Implemented
+- ✅ API keys stored in environment variables (never in source code)
+- ✅ Rate limiting to prevent abuse
+- ✅ Input validation and sanitization
+- ✅ Error message sanitization
+- ✅ CORS and security headers
+- ✅ Backend proxy architecture
+
+⚠️ **Never commit .env files to version control!**
 - 📱 **Responsive Design** - Works on all devices
 - 🎨 **Modern UI** - Clean, professional Microsoft-themed design
 - ⚡ **Fast Performance** - Optimized static assets and minimal dependencies

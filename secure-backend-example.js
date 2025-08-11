@@ -1,6 +1,9 @@
 // SECURE BACKEND IMPLEMENTATION EXAMPLE
 // This should be implemented on your server (Node.js/Express example)
 
+// Load environment variables
+require('dotenv').config();
+
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -117,8 +120,9 @@ Provide helpful, accurate, and concise responses. When appropriate, direct users
 });
 
 // Environment variables setup (.env file)
+// Copy .env.example to .env and fill in your actual values
 /*
-OPENAI_API_KEY=1tH9l37IEaJnPU4I8deKEQZXoY4Zc0EtdzPQHOyYq4kxmuJSStZnJQQJ99BGACYeBjFXJ3w3AAABACOGbu3P
+OPENAI_API_KEY=your_openai_api_key_here
 PORT=3000
 NODE_ENV=production
 */
